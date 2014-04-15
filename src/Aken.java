@@ -1,12 +1,12 @@
 import javafx.animation.PathTransition;
-import javafx.animation.PathTransition.OrientationType;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
@@ -19,15 +19,19 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Aken extends Application {
+	
+	public static float tegex;
+	public static float tegey;
 
 	@Override
 	public void start(Stage primaryStage) {
 		Group juur = new Group();
-		Group tegelane = new Group();
+		Group tegelane =looTegelane();
 		juur.getChildren().add(tegelane);
-		looTegelane(tegelane);
 		liigu(tegelane);
-		Scene mang = new Scene(juur,500,600, Color.LIGHTSKYBLUE);
+		Scene mang = new Scene(juur,800,500, Color.LIGHTSKYBLUE);
+		EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
+		mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud );
 		primaryStage.setTitle("Kitty launcher");
 		primaryStage.setScene(mang);
 		primaryStage.show();
@@ -36,7 +40,9 @@ public class Aken extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	private void looTegelane( Group kiisu){
+	private Group looTegelane(){
+
+		Group kiisu = new Group();
 		float n=(float) 0.5;
 		Circle ovaal = new Circle(100*n,100*n,50*n);
 		Polygon vasakkõrv = new Polygon(40*n,40*n,70*n,100*n,100*n,55*n);
@@ -90,28 +96,25 @@ public class Aken extends Application {
 		kiisu.getChildren().add(vurr4);
 		kiisu.getChildren().add(vurr5);
 		kiisu.getChildren().add(vurr6);
+		return kiisu;
 	}
 	
 	public void liigu(Group kass){
 		Path path = new Path();
-		path.getElements().add(new MoveTo(250, 700));
+		path.getElements().add(new MoveTo(-100, 250));
 		path.getElements().add(
-				new LineTo(250, 400));
+				new LineTo(250, 250));
+		tegex=250;
+		tegey=250;
 
 		PathTransition minemine = new PathTransition();
 		minemine.setDuration(Duration.millis(1000));
 		minemine.setNode(kass);
 		minemine.setPath(path);
-		System.out.println("Kala");
-		//minemine.setOrientation(OrientationType.ORTHOGONAL_TO_TANGENT);
 		minemine.setCycleCount(1);
 		minemine.setAutoReverse(false);
 		
 		minemine.play();
 	}
-	public Path rada(Path tee){
-		if (tee==null)
-			return null;
-		return tee;
-	}
+
 }
