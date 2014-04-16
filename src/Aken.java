@@ -1,9 +1,13 @@
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -13,8 +17,10 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.shape.StrokeLineJoin;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -26,14 +32,19 @@ public class Aken extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		Group juur = new Group();
+		Group mjuur = new Group();
+		GridPane gridpane = new GridPane();
+		loomenu(gridpane);
+		mjuur.getChildren().add(gridpane);
 		Group tegelane =looTegelane();
 		juur.getChildren().add(tegelane);
 		liigu(tegelane);
 		Scene mang = new Scene(juur,800,500, Color.LIGHTSKYBLUE);
+		Scene menu = new Scene(mjuur, Color.GREEN);
 		EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
 		mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud );
 		primaryStage.setTitle("Kitty launcher");
-		primaryStage.setScene(mang);
+		primaryStage.setScene(menu);
 		primaryStage.show();
 	}
 
@@ -115,6 +126,32 @@ public class Aken extends Application {
 		minemine.setAutoReverse(false);
 		
 		minemine.play();
+	}
+	public void loomenu(GridPane alus){
+		alus.setVgap(4);
+		alus.setHgap(4);
+		alus.setGridLinesVisible(true);
+		Rectangle mangi = new Rectangle(0,0,120,50);
+		Rectangle upgrade = new Rectangle(0,0,120,50);
+		Rectangle setings= new Rectangle(0,0,120,50);
+		Text play= new Text("PLAY");
+		Text täienda= new Text("UPGRADES");
+		Text seaded= new Text("SETTINGS");
+		mangi.setFill(Color.CRIMSON);
+		upgrade.setFill(Color.CRIMSON);
+		setings.setFill(Color.CRIMSON);
+		alus.add(mangi, 0, 0,1,1);
+		alus.add(play, 0, 0,1,1);
+		GridPane.setHalignment(play, HPos.CENTER);
+		GridPane.setValignment(play, VPos.CENTER);
+		alus.add(upgrade, 0, 1,1,1);
+		alus.add(täienda, 0, 1,1,1);
+		GridPane.setHalignment(täienda, HPos.CENTER);
+		GridPane.setValignment(täienda, VPos.CENTER);
+		alus.add(setings, 0, 2,1,1);
+		alus.add(seaded, 0, 2,1,1);
+		GridPane.setHalignment(seaded, HPos.CENTER);
+		GridPane.setValignment(seaded, VPos.CENTER);
 	}
 
 }
