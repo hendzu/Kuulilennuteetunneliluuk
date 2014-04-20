@@ -33,6 +33,7 @@ public class Aken extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		primaryStage.setResizable(false);
 		Group juur = new Group();
 		Group mjuur = new Group();
 		GridPane gridpane = new GridPane();
@@ -146,8 +147,6 @@ public class Aken extends Application {
 		alus.add(play, 0, 0,1,1);
 		GridPane.setHalignment(play, HPos.CENTER);
 		GridPane.setValignment(play, VPos.CENTER);
-		System.out.println(mang);
-		System.out.println(primaryStage);
 		EventHandler<MouseEvent> klick = new hiir(mang,primaryStage);
 		mangi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick );
 		alus.add(upgrade, 0, 1,1,1);
@@ -160,7 +159,11 @@ public class Aken extends Application {
 		GridPane.setValignment(seaded, VPos.CENTER);
 		
 	}
-
+public Group looobjektid(){
+	Group stuff = new Group();
+	return stuff;
+	
+}
 
 
 }
