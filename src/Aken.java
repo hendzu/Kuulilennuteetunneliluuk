@@ -1,12 +1,14 @@
+
+
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -34,13 +36,13 @@ public class Aken extends Application {
 		Group juur = new Group();
 		Group mjuur = new Group();
 		GridPane gridpane = new GridPane();
-		loomenu(gridpane);
 		mjuur.getChildren().add(gridpane);
 		Group tegelane =looTegelane();
 		juur.getChildren().add(tegelane);
 		liigu(tegelane);
 		Scene mang = new Scene(juur,800,500, Color.LIGHTSKYBLUE);
 		Scene menu = new Scene(mjuur, Color.GREEN);
+		loomenu(gridpane, mang,primaryStage);
 		EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
 		mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud );
 		primaryStage.setTitle("Kitty launcher");
@@ -127,13 +129,13 @@ public class Aken extends Application {
 		
 		minemine.play();
 	}
-	public void loomenu(GridPane alus){
+	public void loomenu(GridPane alus, Scene mang, Stage primaryStage){
 		alus.setVgap(4);
 		alus.setHgap(4);
 		alus.setGridLinesVisible(true);
-		Rectangle mangi = new Rectangle(0,0,120,50);
-		Rectangle upgrade = new Rectangle(0,0,120,50);
-		Rectangle setings= new Rectangle(0,0,120,50);
+		Rectangle mangi = new Rectangle(0,0,140,50);
+		Rectangle upgrade = new Rectangle(0,0,140,50);
+		Rectangle setings= new Rectangle(0,0,140,50);
 		Text play= new Text("PLAY");
 		Text täienda= new Text("UPGRADES");
 		Text seaded= new Text("SETTINGS");
@@ -144,6 +146,10 @@ public class Aken extends Application {
 		alus.add(play, 0, 0,1,1);
 		GridPane.setHalignment(play, HPos.CENTER);
 		GridPane.setValignment(play, VPos.CENTER);
+		System.out.println(mang);
+		System.out.println(primaryStage);
+		EventHandler<MouseEvent> klick = new hiir(mang,primaryStage);
+		mangi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick );
 		alus.add(upgrade, 0, 1,1,1);
 		alus.add(täienda, 0, 1,1,1);
 		GridPane.setHalignment(täienda, HPos.CENTER);
@@ -152,6 +158,9 @@ public class Aken extends Application {
 		alus.add(seaded, 0, 2,1,1);
 		GridPane.setHalignment(seaded, HPos.CENTER);
 		GridPane.setValignment(seaded, VPos.CENTER);
+		
 	}
+
+
 
 }
