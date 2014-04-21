@@ -28,9 +28,9 @@ import javafx.util.Duration;
 
 public class Aken extends Application {
 
-	public static double tegex=250;
-	public static double tegey=250;
-	public static double m=2;
+	public static double tegex=200;
+	public static double tegey=200;
+	public static double m=1;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -38,8 +38,8 @@ public class Aken extends Application {
 		Group juur = new Group();
 		Group mjuur = new Group();
 		Group sjuur = new Group();
-		Scene menu = new Scene(mjuur, 800*m, 500*m, Color.GREEN);
-		Scene set = new Scene(sjuur, 800*m, 500*m, Color.GREEN);
+		Scene menu = new Scene(mjuur, 800*m, 400*m, Color.GREEN);
+		Scene set = new Scene(sjuur, 800*m, 400*m, Color.GREEN);
 		Scene mang = loomang(juur);
 		loomenu(mjuur, mang,set, primaryStage);
 		looset(sjuur, menu, primaryStage);
@@ -118,11 +118,11 @@ public class Aken extends Application {
 
 	public void liigu(Group kass) {
 		Path path = new Path();
-		path.getElements().add(new MoveTo(-100*m, 250*m));
-		path.getElements().add(new LineTo(250*m, 250*m));
+		path.getElements().add(new MoveTo(-100*m, 200*m));
+		path.getElements().add(new LineTo(200*m, 200*m));
 
 		PathTransition minemine = new PathTransition();
-		minemine.setDuration(Duration.millis(1000));
+		minemine.setDuration(Duration.millis(50));
 		minemine.setNode(kass);
 		minemine.setPath(path);
 		minemine.setCycleCount(1);
@@ -178,14 +178,17 @@ public class Aken extends Application {
 		alus.setHgap(10*m);
 		alus.setGridLinesVisible(false);
 		Rectangle tagasi = new Rectangle(0, 0, 140*m, 50*m);
-		Rectangle upgrade = new Rectangle(0, 0, 140*m, 50*m);
-		Rectangle setings = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle suur = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle väike = new Rectangle(0, 0, 140*m, 50*m);
 		Text back = new Text("BACK");
-		Text täienda = new Text("UPGRADES");
-		Text seaded = new Text("SETTINGS");
+		back.setFont(Font.font("Sustem Regular", 12*m));
+		Text big = new Text("1200*750");
+		back.setFont(Font.font("Sustem Regular", 12*m));
+		Text small = new Text("800*500");
+		back.setFont(Font.font("Sustem Regular", 12*m));
 		tagasi.setFill(Color.CRIMSON);
-		upgrade.setFill(Color.CRIMSON);
-		setings.setFill(Color.CRIMSON);
+		suur.setFill(Color.CRIMSON);
+		väike.setFill(Color.CRIMSON);
 		alus.add(tagasi, 1, 1, 1, 1);
 		alus.add(back, 1, 1, 1, 1);
 		GridPane.setHalignment(back, HPos.CENTER);
@@ -193,14 +196,20 @@ public class Aken extends Application {
 		EventHandler<MouseEvent> klick = new hiir(menu, prima);
 		tagasi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick);
 		back.addEventHandler(MouseEvent.MOUSE_CLICKED, klick);
-		alus.add(upgrade, 1, 2, 1, 1);
-		alus.add(täienda, 1, 2, 1, 1);
-		GridPane.setHalignment(täienda, HPos.CENTER);
-		GridPane.setValignment(täienda, VPos.CENTER);
-		alus.add(setings, 1, 3, 1, 1);
-		alus.add(seaded, 1, 3, 1, 1);
-		GridPane.setHalignment(seaded, HPos.CENTER);
-		GridPane.setValignment(seaded, VPos.CENTER);
+		alus.add(suur, 1, 2, 1, 1);
+		alus.add(big, 1, 2, 1, 1);
+		GridPane.setHalignment(big, HPos.CENTER);
+		GridPane.setValignment(big, VPos.CENTER);
+		EventHandler<MouseEvent> klicks = new Suurus(1.5,prima);
+		big.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
+		suur.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
+		alus.add(väike, 1, 3, 1, 1);
+		alus.add(small, 1, 3, 1, 1);
+		GridPane.setHalignment(small, HPos.CENTER);
+		GridPane.setValignment(small, VPos.CENTER);
+		EventHandler<MouseEvent> klickv = new Suurus(1,prima);
+		väike.addEventHandler(MouseEvent.MOUSE_CLICKED, klickv);
+		small.addEventHandler(MouseEvent.MOUSE_CLICKED, klickv);
 	}
 
 	public Group looobjektid() {
@@ -213,7 +222,7 @@ public Scene loomang(Group juur){
 	Group tegelane = looTegelane(0.5);
 	juur.getChildren().add(tegelane);
 	liigu(tegelane);
-	Scene mang = new Scene(juur, 800*m, 500*m, Color.LIGHTSKYBLUE);
+	Scene mang = new Scene(juur, 800*m, 400*m, Color.LIGHTSKYBLUE);
 	EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
 	mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud);
 	return mang;
