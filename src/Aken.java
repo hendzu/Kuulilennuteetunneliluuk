@@ -42,7 +42,7 @@ public class Aken extends Application {
 		juur.getChildren().add(tegelane);
 		liigu(tegelane);
 		Scene mang = new Scene(juur,800,500, Color.LIGHTSKYBLUE);
-		Scene menu = new Scene(mjuur, Color.GREEN);
+		Scene menu = new Scene(mjuur,800,500, Color.GREEN);
 		loomenu(gridpane, mang,primaryStage);
 		EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
 		mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud );
@@ -131,9 +131,9 @@ public class Aken extends Application {
 		minemine.play();
 	}
 	public void loomenu(GridPane alus, Scene mang, Stage primaryStage){
-		alus.setVgap(4);
-		alus.setHgap(4);
-		alus.setGridLinesVisible(true);
+		alus.setVgap(10);
+		alus.setHgap(10);
+		alus.setGridLinesVisible(false);
 		Rectangle mangi = new Rectangle(0,0,140,50);
 		Rectangle upgrade = new Rectangle(0,0,140,50);
 		Rectangle setings= new Rectangle(0,0,140,50);
@@ -143,21 +143,49 @@ public class Aken extends Application {
 		mangi.setFill(Color.CRIMSON);
 		upgrade.setFill(Color.CRIMSON);
 		setings.setFill(Color.CRIMSON);
-		alus.add(mangi, 0, 0,1,1);
-		alus.add(play, 0, 0,1,1);
+		alus.add(mangi, 1, 1,1,1);
+		alus.add(play, 1, 1,1,1);
 		GridPane.setHalignment(play, HPos.CENTER);
 		GridPane.setValignment(play, VPos.CENTER);
 		EventHandler<MouseEvent> klick = new hiir(mang,primaryStage);
 		mangi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick );
-		alus.add(upgrade, 0, 1,1,1);
-		alus.add(täienda, 0, 1,1,1);
+		alus.add(upgrade, 1, 2,1,1);
+		alus.add(täienda, 1, 2,1,1);
 		GridPane.setHalignment(täienda, HPos.CENTER);
 		GridPane.setValignment(täienda, VPos.CENTER);
-		alus.add(setings, 0, 2,1,1);
-		alus.add(seaded, 0, 2,1,1);
+		alus.add(setings, 1, 3,1,1);
+		alus.add(seaded, 1, 3,1,1);
 		GridPane.setHalignment(seaded, HPos.CENTER);
 		GridPane.setValignment(seaded, VPos.CENTER);
 		
+	}
+	public void looset(GridPane alus, Scene menu, Stage prima){
+		alus.setVgap(10);
+		alus.setHgap(10);
+		alus.setGridLinesVisible(false);
+		Rectangle tagasi = new Rectangle(0,0,140,50);
+		Rectangle upgrade = new Rectangle(0,0,140,50);
+		Rectangle setings= new Rectangle(0,0,140,50);
+		Text back= new Text("BACK");
+		Text täienda= new Text("UPGRADES");
+		Text seaded= new Text("SETTINGS");
+		tagasi.setFill(Color.CRIMSON);
+		upgrade.setFill(Color.CRIMSON);
+		setings.setFill(Color.CRIMSON);  
+		alus.add(tagasi, 1, 1,1,1);
+		alus.add(back, 1, 1,1,1);
+		GridPane.setHalignment(back, HPos.CENTER);
+		GridPane.setValignment(back, VPos.CENTER);
+		EventHandler<MouseEvent> klick = new hiir(menu,prima);
+		tagasi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick );
+		alus.add(upgrade, 1, 2,1,1);
+		alus.add(täienda, 1, 2,1,1);
+		GridPane.setHalignment(täienda, HPos.CENTER);
+		GridPane.setValignment(täienda, VPos.CENTER);
+		alus.add(setings, 1, 3,1,1);
+		alus.add(seaded, 1, 3,1,1);
+		GridPane.setHalignment(seaded, HPos.CENTER);
+		GridPane.setValignment(seaded, VPos.CENTER);
 	}
 public Group looobjektid(){
 	Group stuff = new Group();
