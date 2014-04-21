@@ -1,5 +1,4 @@
 
-
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -27,7 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Aken extends Application {
-	
+
 	public static float tegex;
 	public static float tegey;
 
@@ -36,16 +35,12 @@ public class Aken extends Application {
 		primaryStage.setResizable(false);
 		Group juur = new Group();
 		Group mjuur = new Group();
-		GridPane gridpane = new GridPane();
-		mjuur.getChildren().add(gridpane);
-		Group tegelane =looTegelane();
-		juur.getChildren().add(tegelane);
-		liigu(tegelane);
-		Scene mang = new Scene(juur,800,500, Color.LIGHTSKYBLUE);
-		Scene menu = new Scene(mjuur,800,500, Color.GREEN);
-		loomenu(gridpane, mang,primaryStage);
-		EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
-		mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud );
+		Group sjuur = new Group();
+		Scene menu = new Scene(mjuur, 800, 500, Color.GREEN);
+		Scene set = new Scene(sjuur, 800, 500, Color.GREEN);
+		Scene mang = loomang(juur);
+		loomenu(mjuur, mang,set, primaryStage);
+		looset(sjuur, menu, primaryStage);
 		primaryStage.setTitle("Kitty launcher");
 		primaryStage.setScene(menu);
 		primaryStage.show();
@@ -54,37 +49,43 @@ public class Aken extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	private Group looTegelane(){
+
+	private Group looTegelane() {
 
 		Group kiisu = new Group();
-		float n=(float) 0.5;
-		Circle ovaal = new Circle(100*n,100*n,50*n);
-		Polygon vasakkõrv = new Polygon(40*n,40*n,70*n,100*n,100*n,55*n);
-		Polygon paremkõrv = new Polygon(160*n,40*n,130*n,100*n,100*n,55*n);
-		Shape pea1= Shape.union(ovaal, paremkõrv);
-		Shape peafinal= Shape.union(pea1, vasakkõrv);
-		Polygon vkõrvs = new Polygon(50*n,50*n,60*n,70*n,80*n,55*n);
-		Polygon pkõrvs = new Polygon(150*n,50*n,140*n,70*n,120*n,55*n);
-		Ellipse silmp = new Ellipse(125*n,84*n,10*n,4*n); 
-		Ellipse silmv = new Ellipse(75*n,84*n,10*n,4*n);
-		Ellipse pupillp = new Ellipse(125*n,84*n,2*n,3*n); 
-		Ellipse pupillv = new Ellipse(75*n,84*n,2*n,3*n);
-		Arc suup = new Arc(110*n,114*n,10*n,10*n,180,135);
-		Arc suuv = new Arc(90*n,114*n,10*n,10*n,210,135);
-		Polygon nina = new Polygon(100*n,112*n,95*n,107*n,105*n,107*n);
-		Line vurr1 = new Line(92*n, 110*n, 64*n, 110*n);
-		Line vurr2 = new Line(93*n, 112*n, 64*n, 120*n);
-		Line vurr3 = new Line(93*n, 108*n, 64*n, 95*n);
-		Line vurr4 = new Line(110*n, 110*n, 136*n, 110*n);
-		Line vurr5 = new Line(109*n, 112*n, 136*n, 120*n);
-		Line vurr6 = new Line(109*n, 108*n, 136*n, 95*n);
+		float n = (float) 0.5;
+		Circle ovaal = new Circle(100 * n, 100 * n, 50 * n);
+		Polygon vasakkõrv = new Polygon(40 * n, 40 * n, 70 * n, 100 * n,
+				100 * n, 55 * n);
+		Polygon paremkõrv = new Polygon(160 * n, 40 * n, 130 * n, 100 * n,
+				100 * n, 55 * n);
+		Shape pea1 = Shape.union(ovaal, paremkõrv);
+		Shape peafinal = Shape.union(pea1, vasakkõrv);
+		Polygon vkõrvs = new Polygon(50 * n, 50 * n, 60 * n, 70 * n, 80 * n,
+				55 * n);
+		Polygon pkõrvs = new Polygon(150 * n, 50 * n, 140 * n, 70 * n, 120 * n,
+				55 * n);
+		Ellipse silmp = new Ellipse(125 * n, 84 * n, 10 * n, 4 * n);
+		Ellipse silmv = new Ellipse(75 * n, 84 * n, 10 * n, 4 * n);
+		Ellipse pupillp = new Ellipse(125 * n, 84 * n, 2 * n, 3 * n);
+		Ellipse pupillv = new Ellipse(75 * n, 84 * n, 2 * n, 3 * n);
+		Arc suup = new Arc(110 * n, 114 * n, 10 * n, 10 * n, 180, 135);
+		Arc suuv = new Arc(90 * n, 114 * n, 10 * n, 10 * n, 210, 135);
+		Polygon nina = new Polygon(100 * n, 112 * n, 95 * n, 107 * n, 105 * n,
+				107 * n);
+		Line vurr1 = new Line(92 * n, 110 * n, 64 * n, 110 * n);
+		Line vurr2 = new Line(93 * n, 112 * n, 64 * n, 120 * n);
+		Line vurr3 = new Line(93 * n, 108 * n, 64 * n, 95 * n);
+		Line vurr4 = new Line(110 * n, 110 * n, 136 * n, 110 * n);
+		Line vurr5 = new Line(109 * n, 112 * n, 136 * n, 120 * n);
+		Line vurr6 = new Line(109 * n, 108 * n, 136 * n, 95 * n);
 		nina.setStrokeLineJoin(StrokeLineJoin.ROUND);
-		nina.setStrokeWidth(3*n);
+		nina.setStrokeWidth(3 * n);
 		nina.setStroke(Color.BLACK);
-		suuv.setStrokeWidth(2*n);
+		suuv.setStrokeWidth(2 * n);
 		suuv.setStroke(Color.BLACK);
 		suuv.setFill(null);
-		suup.setStrokeWidth(2*n);
+		suup.setStrokeWidth(2 * n);
 		suup.setStroke(Color.BLACK);
 		suup.setFill(null);
 		silmv.setFill(Color.CRIMSON);
@@ -112,14 +113,13 @@ public class Aken extends Application {
 		kiisu.getChildren().add(vurr6);
 		return kiisu;
 	}
-	
-	public void liigu(Group kass){
+
+	public void liigu(Group kass) {
 		Path path = new Path();
 		path.getElements().add(new MoveTo(-100, 250));
-		path.getElements().add(
-				new LineTo(250, 250));
-		tegex=250;
-		tegey=250;
+		path.getElements().add(new LineTo(250, 250));
+		tegex = 250;
+		tegey = 250;
 
 		PathTransition minemine = new PathTransition();
 		minemine.setDuration(Duration.millis(1000));
@@ -127,71 +127,89 @@ public class Aken extends Application {
 		minemine.setPath(path);
 		minemine.setCycleCount(1);
 		minemine.setAutoReverse(false);
-		
+
 		minemine.play();
 	}
-	public void loomenu(GridPane alus, Scene mang, Stage primaryStage){
+
+	public void loomenu(Group mjuur, Scene mang,Scene set, Stage primaryStage) {
+
+		GridPane alus = new GridPane();
+		mjuur.getChildren().add(alus);
 		alus.setVgap(10);
 		alus.setHgap(10);
 		alus.setGridLinesVisible(false);
-		Rectangle mangi = new Rectangle(0,0,140,50);
-		Rectangle upgrade = new Rectangle(0,0,140,50);
-		Rectangle setings= new Rectangle(0,0,140,50);
-		Text play= new Text("PLAY");
-		Text täienda= new Text("UPGRADES");
-		Text seaded= new Text("SETTINGS");
+		Rectangle mangi = new Rectangle(0, 0, 140, 50);
+		Rectangle upgrade = new Rectangle(0, 0, 140, 50);
+		Rectangle settings = new Rectangle(0, 0, 140, 50);
+		Text play = new Text("PLAY");
+		Text täienda = new Text("UPGRADES");
+		Text seaded = new Text("SETTINGS");
 		mangi.setFill(Color.CRIMSON);
 		upgrade.setFill(Color.CRIMSON);
-		setings.setFill(Color.CRIMSON);
-		alus.add(mangi, 1, 1,1,1);
-		alus.add(play, 1, 1,1,1);
+		settings.setFill(Color.CRIMSON);
+		alus.add(mangi, 1, 1, 1, 1);
+		alus.add(play, 1, 1, 1, 1);
 		GridPane.setHalignment(play, HPos.CENTER);
 		GridPane.setValignment(play, VPos.CENTER);
-		EventHandler<MouseEvent> klick = new hiir(mang,primaryStage);
-		mangi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick );
-		alus.add(upgrade, 1, 2,1,1);
-		alus.add(täienda, 1, 2,1,1);
+		EventHandler<MouseEvent> klickp = new hiir(mang, primaryStage);
+		mangi.addEventHandler(MouseEvent.MOUSE_CLICKED, klickp);
+		alus.add(upgrade, 1, 2, 1, 1);
+		alus.add(täienda, 1, 2, 1, 1);
 		GridPane.setHalignment(täienda, HPos.CENTER);
 		GridPane.setValignment(täienda, VPos.CENTER);
-		alus.add(setings, 1, 3,1,1);
-		alus.add(seaded, 1, 3,1,1);
+		alus.add(settings, 1, 3, 1, 1);
+		alus.add(seaded, 1, 3, 1, 1);
 		GridPane.setHalignment(seaded, HPos.CENTER);
 		GridPane.setValignment(seaded, VPos.CENTER);
-		
+		EventHandler<MouseEvent> klicks = new hiir(set, primaryStage);
+		settings.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
+
 	}
-	public void looset(GridPane alus, Scene menu, Stage prima){
+
+	public void looset(Group sjuur, Scene menu, Stage prima) {
+		GridPane alus = new GridPane();
+		sjuur.getChildren().add(alus);
 		alus.setVgap(10);
 		alus.setHgap(10);
 		alus.setGridLinesVisible(false);
-		Rectangle tagasi = new Rectangle(0,0,140,50);
-		Rectangle upgrade = new Rectangle(0,0,140,50);
-		Rectangle setings= new Rectangle(0,0,140,50);
-		Text back= new Text("BACK");
-		Text täienda= new Text("UPGRADES");
-		Text seaded= new Text("SETTINGS");
+		Rectangle tagasi = new Rectangle(0, 0, 140, 50);
+		Rectangle upgrade = new Rectangle(0, 0, 140, 50);
+		Rectangle setings = new Rectangle(0, 0, 140, 50);
+		Text back = new Text("BACK");
+		Text täienda = new Text("UPGRADES");
+		Text seaded = new Text("SETTINGS");
 		tagasi.setFill(Color.CRIMSON);
 		upgrade.setFill(Color.CRIMSON);
-		setings.setFill(Color.CRIMSON);  
-		alus.add(tagasi, 1, 1,1,1);
-		alus.add(back, 1, 1,1,1);
+		setings.setFill(Color.CRIMSON);
+		alus.add(tagasi, 1, 1, 1, 1);
+		alus.add(back, 1, 1, 1, 1);
 		GridPane.setHalignment(back, HPos.CENTER);
 		GridPane.setValignment(back, VPos.CENTER);
-		EventHandler<MouseEvent> klick = new hiir(menu,prima);
-		tagasi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick );
-		alus.add(upgrade, 1, 2,1,1);
-		alus.add(täienda, 1, 2,1,1);
+		EventHandler<MouseEvent> klick = new hiir(menu, prima);
+		tagasi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick);
+		alus.add(upgrade, 1, 2, 1, 1);
+		alus.add(täienda, 1, 2, 1, 1);
 		GridPane.setHalignment(täienda, HPos.CENTER);
 		GridPane.setValignment(täienda, VPos.CENTER);
-		alus.add(setings, 1, 3,1,1);
-		alus.add(seaded, 1, 3,1,1);
+		alus.add(setings, 1, 3, 1, 1);
+		alus.add(seaded, 1, 3, 1, 1);
 		GridPane.setHalignment(seaded, HPos.CENTER);
 		GridPane.setValignment(seaded, VPos.CENTER);
 	}
-public Group looobjektid(){
-	Group stuff = new Group();
-	return stuff;
-	
+
+	public Group looobjektid() {
+		Group stuff = new Group();
+		return stuff;
+
+	}
+public Scene loomang(Group juur){
+
+	Group tegelane = looTegelane();
+	juur.getChildren().add(tegelane);
+	liigu(tegelane);
+	Scene mang = new Scene(juur, 800, 500, Color.LIGHTSKYBLUE);
+	EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
+	mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud);
+	return mang;
 }
-
-
 }
