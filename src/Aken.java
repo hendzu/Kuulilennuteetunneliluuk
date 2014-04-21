@@ -35,13 +35,13 @@ public class Aken extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setResizable(false);
-		Group juur = new Group();
+		//Group juur = new Group();
 		Group mjuur = new Group();
 		Group sjuur = new Group();
 		Scene menu = new Scene(mjuur, 800*m, 400*m, Color.GREEN);
 		Scene set = new Scene(sjuur, 800*m, 400*m, Color.GREEN);
-		Scene mang = loomang(juur);
-		loomenu(mjuur, mang,set, primaryStage);
+		//Scene mang = loomang(juur);
+		loomenu(mjuur,set, primaryStage);
 		looset(sjuur, menu, primaryStage);
 		primaryStage.setTitle("Kitty launcher");
 		primaryStage.setScene(menu);
@@ -52,7 +52,7 @@ public class Aken extends Application {
 		launch(args);
 	}
 
-	private Group looTegelane(double d) {
+	static Group looTegelane(double d) {
 
 		Group kiisu = new Group();
 		double n = d*m;
@@ -116,13 +116,13 @@ public class Aken extends Application {
 		return kiisu;
 	}
 
-	public void liigu(Group kass) {
+	public static void liigu(Group kass) {
 		Path path = new Path();
 		path.getElements().add(new MoveTo(-100*m, 200*m));
 		path.getElements().add(new LineTo(200*m, 200*m));
 
 		PathTransition minemine = new PathTransition();
-		minemine.setDuration(Duration.millis(50));
+		minemine.setDuration(Duration.millis(1000));
 		minemine.setNode(kass);
 		minemine.setPath(path);
 		minemine.setCycleCount(1);
@@ -131,7 +131,7 @@ public class Aken extends Application {
 		minemine.play();
 	}
 
-	public void loomenu(Group mjuur, Scene mang,Scene set, Stage primaryStage) {
+	public void loomenu(Group mjuur,Scene set, Stage primaryStage) {
 
 		GridPane alus = new GridPane();
 		mjuur.getChildren().add(alus);
@@ -154,7 +154,7 @@ public class Aken extends Application {
 		alus.add(play, 1, 1, 1, 1);
 		GridPane.setHalignment(play, HPos.CENTER);
 		GridPane.setValignment(play, VPos.CENTER);
-		EventHandler<MouseEvent> klickp = new hiir(mang, primaryStage);
+		EventHandler<MouseEvent> klickp = new Mangalgab(primaryStage);
 		mangi.addEventHandler(MouseEvent.MOUSE_CLICKED, klickp);
 		play.addEventHandler(MouseEvent.MOUSE_CLICKED, klickp);
 		alus.add(upgrade, 1, 2, 1, 1);

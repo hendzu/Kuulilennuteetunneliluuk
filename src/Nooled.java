@@ -48,7 +48,7 @@ public class Nooled implements EventHandler<KeyEvent> {
 		Aken.tegey=Aken.tegey+y;
 
 		PathTransition suundu = new PathTransition();
-		suundu.setDuration(Duration.millis(10));
+		suundu.setDuration(Duration.millis(50));
 		suundu.setNode(kangelane);
 		suundu.setPath(path);
 		
