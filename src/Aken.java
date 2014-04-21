@@ -1,6 +1,7 @@
 
 import javafx.animation.PathTransition;
 import javafx.application.Application;
+import javafx.beans.property.ObjectProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -30,7 +31,7 @@ public class Aken extends Application {
 
 	public static double tegex=200;
 	public static double tegey=200;
-	public static double m=1;
+	public static double m=0.1;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -139,12 +140,17 @@ public class Aken extends Application {
 		alus.setHgap(10*m);
 		alus.setGridLinesVisible(false);
 		Rectangle mangi = new Rectangle(0, 0, 140*m, 50*m);
+		mangi.heightProperty().bind(primaryStage.heightProperty().divide(7));
+		mangi.widthProperty().bind(primaryStage.widthProperty().divide(5));
 		Rectangle upgrade = new Rectangle(0, 0, 140*m, 50*m);
+		upgrade.heightProperty().bind(primaryStage.heightProperty().divide(7));
+		upgrade.widthProperty().bind(primaryStage.widthProperty().divide(5));
 		Rectangle settings = new Rectangle(0, 0, 140*m, 50*m);
+		settings.heightProperty().bind(primaryStage.heightProperty().divide(7));
+		settings.widthProperty().bind(primaryStage.widthProperty().divide(5));
 		Text play = new Text("PLAY");
-		play.setFont(Font.font("Sustem Regular", 12*m));
 		Text täienda = new Text("UPGRADES");
-		täienda.setFont(Font.font("Sustem Regular", 12*m));
+		täienda.setFont(Font.font("Sustem Regular", 12));
 		Text seaded = new Text("SETTINGS");
 		seaded.setFont(Font.font("Sustem Regular", 12*m));
 		mangi.setFill(Color.CRIMSON);
@@ -177,15 +183,21 @@ public class Aken extends Application {
 		alus.setVgap(10*m);
 		alus.setHgap(10*m);
 		alus.setGridLinesVisible(false);
-		Rectangle tagasi = new Rectangle(0, 0, 140*m, 50*m);
-		Rectangle suur = new Rectangle(0, 0, 140*m, 50*m);
-		Rectangle väike = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle tagasi = new Rectangle();
+		tagasi.heightProperty().bind(prima.heightProperty().divide(7));
+		tagasi.widthProperty().bind(prima.widthProperty().divide(5));
+		Rectangle suur = new Rectangle();
+		suur.heightProperty().bind(prima.heightProperty().divide(7));
+		suur.widthProperty().bind(prima.widthProperty().divide(5));
+		Rectangle väike = new Rectangle();
+		väike.heightProperty().bind(prima.heightProperty().divide(7));
+		väike.widthProperty().bind(prima.widthProperty().divide(5));
 		Text back = new Text("BACK");
 		back.setFont(Font.font("Sustem Regular", 12*m));
 		Text big = new Text("1200*750");
-		back.setFont(Font.font("Sustem Regular", 12*m));
+		big.setFont(Font.font("Sustem Regular", 12*m));
 		Text small = new Text("800*500");
-		back.setFont(Font.font("Sustem Regular", 12*m));
+		small.setFont(Font.font("Sustem Regular", 12*m));
 		tagasi.setFill(Color.CRIMSON);
 		suur.setFill(Color.CRIMSON);
 		väike.setFill(Color.CRIMSON);
