@@ -39,12 +39,12 @@ public class Nooled implements EventHandler<KeyEvent> {
 		
 		
 	}
-	public PathTransition liigu(Group kangelane,int x, int y){
+	public PathTransition liigu(Group kangelane,double d, double y){
 		Path path = new Path();
-		path.getElements().add(new MoveTo(Aken.tegex, Aken.tegey));
+		path.getElements().add(new MoveTo((Aken.tegex)*Aken.m, (Aken.tegey)*Aken.m));
 		path.getElements().add(
-				new LineTo(Aken.tegex+x, Aken.tegey+y));
-		Aken.tegex=Aken.tegex+x;
+				new LineTo((Aken.tegex+d)*Aken.m, (Aken.tegey+y)*Aken.m));
+		Aken.tegex=Aken.tegex+d;
 		Aken.tegey=Aken.tegey+y;
 
 		PathTransition suundu = new PathTransition();

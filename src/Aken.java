@@ -21,14 +21,16 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.shape.StrokeLineJoin;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Aken extends Application {
 
-	public static float tegex;
-	public static float tegey;
+	public static double tegex=250;
+	public static double tegey=250;
+	public static double m=2;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -36,8 +38,8 @@ public class Aken extends Application {
 		Group juur = new Group();
 		Group mjuur = new Group();
 		Group sjuur = new Group();
-		Scene menu = new Scene(mjuur, 800, 500, Color.GREEN);
-		Scene set = new Scene(sjuur, 800, 500, Color.GREEN);
+		Scene menu = new Scene(mjuur, 800*m, 500*m, Color.GREEN);
+		Scene set = new Scene(sjuur, 800*m, 500*m, Color.GREEN);
 		Scene mang = loomang(juur);
 		loomenu(mjuur, mang,set, primaryStage);
 		looset(sjuur, menu, primaryStage);
@@ -50,10 +52,10 @@ public class Aken extends Application {
 		launch(args);
 	}
 
-	private Group looTegelane() {
+	private Group looTegelane(double d) {
 
 		Group kiisu = new Group();
-		float n = (float) 0.5;
+		double n = d*m;
 		Circle ovaal = new Circle(100 * n, 100 * n, 50 * n);
 		Polygon vasakkõrv = new Polygon(40 * n, 40 * n, 70 * n, 100 * n,
 				100 * n, 55 * n);
@@ -116,10 +118,8 @@ public class Aken extends Application {
 
 	public void liigu(Group kass) {
 		Path path = new Path();
-		path.getElements().add(new MoveTo(-100, 250));
-		path.getElements().add(new LineTo(250, 250));
-		tegex = 250;
-		tegey = 250;
+		path.getElements().add(new MoveTo(-100*m, 250*m));
+		path.getElements().add(new LineTo(250*m, 250*m));
 
 		PathTransition minemine = new PathTransition();
 		minemine.setDuration(Duration.millis(1000));
@@ -135,15 +135,18 @@ public class Aken extends Application {
 
 		GridPane alus = new GridPane();
 		mjuur.getChildren().add(alus);
-		alus.setVgap(10);
-		alus.setHgap(10);
+		alus.setVgap(10*m);
+		alus.setHgap(10*m);
 		alus.setGridLinesVisible(false);
-		Rectangle mangi = new Rectangle(0, 0, 140, 50);
-		Rectangle upgrade = new Rectangle(0, 0, 140, 50);
-		Rectangle settings = new Rectangle(0, 0, 140, 50);
+		Rectangle mangi = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle upgrade = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle settings = new Rectangle(0, 0, 140*m, 50*m);
 		Text play = new Text("PLAY");
+		play.setFont(Font.font("Sustem Regular", 12*m));
 		Text täienda = new Text("UPGRADES");
+		täienda.setFont(Font.font("Sustem Regular", 12*m));
 		Text seaded = new Text("SETTINGS");
+		seaded.setFont(Font.font("Sustem Regular", 12*m));
 		mangi.setFill(Color.CRIMSON);
 		upgrade.setFill(Color.CRIMSON);
 		settings.setFill(Color.CRIMSON);
@@ -153,6 +156,7 @@ public class Aken extends Application {
 		GridPane.setValignment(play, VPos.CENTER);
 		EventHandler<MouseEvent> klickp = new hiir(mang, primaryStage);
 		mangi.addEventHandler(MouseEvent.MOUSE_CLICKED, klickp);
+		play.addEventHandler(MouseEvent.MOUSE_CLICKED, klickp);
 		alus.add(upgrade, 1, 2, 1, 1);
 		alus.add(täienda, 1, 2, 1, 1);
 		GridPane.setHalignment(täienda, HPos.CENTER);
@@ -163,18 +167,19 @@ public class Aken extends Application {
 		GridPane.setValignment(seaded, VPos.CENTER);
 		EventHandler<MouseEvent> klicks = new hiir(set, primaryStage);
 		settings.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
+		seaded.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
 
 	}
 
 	public void looset(Group sjuur, Scene menu, Stage prima) {
 		GridPane alus = new GridPane();
 		sjuur.getChildren().add(alus);
-		alus.setVgap(10);
-		alus.setHgap(10);
+		alus.setVgap(10*m);
+		alus.setHgap(10*m);
 		alus.setGridLinesVisible(false);
-		Rectangle tagasi = new Rectangle(0, 0, 140, 50);
-		Rectangle upgrade = new Rectangle(0, 0, 140, 50);
-		Rectangle setings = new Rectangle(0, 0, 140, 50);
+		Rectangle tagasi = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle upgrade = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle setings = new Rectangle(0, 0, 140*m, 50*m);
 		Text back = new Text("BACK");
 		Text täienda = new Text("UPGRADES");
 		Text seaded = new Text("SETTINGS");
@@ -187,6 +192,7 @@ public class Aken extends Application {
 		GridPane.setValignment(back, VPos.CENTER);
 		EventHandler<MouseEvent> klick = new hiir(menu, prima);
 		tagasi.addEventHandler(MouseEvent.MOUSE_CLICKED, klick);
+		back.addEventHandler(MouseEvent.MOUSE_CLICKED, klick);
 		alus.add(upgrade, 1, 2, 1, 1);
 		alus.add(täienda, 1, 2, 1, 1);
 		GridPane.setHalignment(täienda, HPos.CENTER);
@@ -204,10 +210,10 @@ public class Aken extends Application {
 	}
 public Scene loomang(Group juur){
 
-	Group tegelane = looTegelane();
+	Group tegelane = looTegelane(0.5);
 	juur.getChildren().add(tegelane);
 	liigu(tegelane);
-	Scene mang = new Scene(juur, 800, 500, Color.LIGHTSKYBLUE);
+	Scene mang = new Scene(juur, 800*m, 500*m, Color.LIGHTSKYBLUE);
 	EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
 	mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud);
 	return mang;
