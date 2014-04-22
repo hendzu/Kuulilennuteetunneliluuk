@@ -21,19 +21,19 @@ public class Nooled implements EventHandler<KeyEvent> {
 		//System.out.println(event.getCode());
 		String klahv = event.getCode().toString();
 		if (klahv =="LEFT"){
-			if (Aken.tegex>50)
+			if (Aken.tegex>40)
 			liigu(tegelane,-10,0);
 			}
 		if (klahv =="DOWN"){
-			if (Aken.tegey<350)
+			if (Aken.tegey<340)
 			liigu(tegelane,0,10);
 			}
 		if (klahv =="UP"){
-			if (Aken.tegey>50)
+			if (Aken.tegey>30)
 			liigu(tegelane,0,-10);
 			}
 		if (klahv =="RIGHT"){
-			if (Aken.tegex<750)
+			if (Aken.tegex<760)
 			liigu(tegelane,10,0);
 			}
 		

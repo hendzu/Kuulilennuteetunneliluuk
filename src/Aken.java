@@ -1,7 +1,6 @@
 
 import javafx.animation.PathTransition;
 import javafx.application.Application;
-import javafx.beans.property.ObjectProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -31,7 +30,8 @@ public class Aken extends Application {
 
 	public static double tegex=200;
 	public static double tegey=200;
-	public static double m=0.1;
+	public static double m=1;
+	public static Text kiri=new Text("");
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,6 +50,7 @@ public class Aken extends Application {
 	}
 
 	public static void main(String[] args) {
+		kiri.setFont(Font.font("Sustem Regular", 12*m));
 		launch(args);
 	}
 
@@ -149,10 +150,11 @@ public class Aken extends Application {
 		settings.heightProperty().bind(primaryStage.heightProperty().divide(7));
 		settings.widthProperty().bind(primaryStage.widthProperty().divide(5));
 		Text play = new Text("PLAY");
+		play.fontProperty().bind(kiri.fontProperty());
 		Text täienda = new Text("UPGRADES");
-		täienda.setFont(Font.font("Sustem Regular", 12));
+		täienda.fontProperty().bind(kiri.fontProperty());
 		Text seaded = new Text("SETTINGS");
-		seaded.setFont(Font.font("Sustem Regular", 12*m));
+		seaded.fontProperty().bind(kiri.fontProperty());
 		mangi.setFill(Color.CRIMSON);
 		upgrade.setFill(Color.CRIMSON);
 		settings.setFill(Color.CRIMSON);
@@ -193,11 +195,11 @@ public class Aken extends Application {
 		väike.heightProperty().bind(prima.heightProperty().divide(7));
 		väike.widthProperty().bind(prima.widthProperty().divide(5));
 		Text back = new Text("BACK");
-		back.setFont(Font.font("Sustem Regular", 12*m));
+		back.fontProperty().bind(kiri.fontProperty());
 		Text big = new Text("1200*750");
-		big.setFont(Font.font("Sustem Regular", 12*m));
+		big.fontProperty().bind(kiri.fontProperty());
 		Text small = new Text("800*500");
-		small.setFont(Font.font("Sustem Regular", 12*m));
+		small.fontProperty().bind(kiri.fontProperty());
 		tagasi.setFill(Color.CRIMSON);
 		suur.setFill(Color.CRIMSON);
 		väike.setFill(Color.CRIMSON);
