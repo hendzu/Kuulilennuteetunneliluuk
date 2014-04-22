@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Aken extends Application {
+	
 
 	public static double tegex=200;
 	public static double tegey=200;
