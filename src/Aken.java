@@ -36,6 +36,8 @@ public class Aken extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setResizable(false);
+		primaryStage.setHeight(400*m);
+		primaryStage.setWidth(800*m);
 		//Group juur = new Group();
 		Group mjuur = new Group();
 		Group sjuur = new Group();
@@ -196,9 +198,9 @@ public class Aken extends Application {
 		väike.widthProperty().bind(prima.widthProperty().divide(5));
 		Text back = new Text("BACK");
 		back.fontProperty().bind(kiri.fontProperty());
-		Text big = new Text("1200*750");
+		Text big = new Text("1200*600");
 		big.fontProperty().bind(kiri.fontProperty());
-		Text small = new Text("800*500");
+		Text small = new Text("800*400");
 		small.fontProperty().bind(kiri.fontProperty());
 		tagasi.setFill(Color.CRIMSON);
 		suur.setFill(Color.CRIMSON);
