@@ -14,7 +14,7 @@ import javafx.util.Duration;
 
 public class Mangalgab implements EventHandler<MouseEvent> {
 	public Stage lava;
-	private int FPS;
+
 	private static Timeline manguKordus;
 
 	public Mangalgab(Stage lava) {
@@ -22,9 +22,7 @@ public class Mangalgab implements EventHandler<MouseEvent> {
 		this.lava = lava;
 	}
 
-	protected int getFPS() {
-		return FPS;
-	}
+	
 
 	@Override
 	public void handle(MouseEvent event) {
@@ -74,7 +72,7 @@ public class Mangalgab implements EventHandler<MouseEvent> {
 	 * mull.kustutatav = true;
 	 */
 	protected final void alusta() {
-		final Duration aeg = Duration.millis(1000 / getFPS());
+		final Duration aeg = Duration.millis(1000 / 60);
 		final KeyFrame kaader = new KeyFrame(aeg,
 				new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent event) {

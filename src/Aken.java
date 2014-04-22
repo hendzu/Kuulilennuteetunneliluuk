@@ -35,7 +35,7 @@ public class Aken extends Application {
 	public static double m = 1;
 	public static Text kiri = new Text("");
 
-	@Override
+	//loob menüü akna
 	public void start(Stage primaryStage) {
 		primaryStage.setResizable(false);
 		primaryStage.setHeight(400 * m);
@@ -57,7 +57,7 @@ public class Aken extends Application {
 		kiri.setFont(Font.font("Sustem Regular", 12 * m));
 		launch(args);
 	}
-
+	//loob peategelase
 	static Group looTegelane(double d) {
 
 		Group kiisu = new Group();
@@ -121,7 +121,7 @@ public class Aken extends Application {
 		kiisu.getChildren().add(vurr6);
 		return kiisu;
 	}
-
+	//loob kassi sisenemise
 	public static void liigu(Group kass) {
 		Path path = new Path();
 		path.getElements().add(new MoveTo(-100 * m, 200 * m));
@@ -136,7 +136,7 @@ public class Aken extends Application {
 
 		minemine.play();
 	}
-
+	//loob menüü nupud ja nuppude eventhandlerid
 	public void loomenu(Group mjuur, Scene set, Stage primaryStage) {
 
 		GridPane alus = new GridPane();
@@ -182,7 +182,7 @@ public class Aken extends Application {
 		seaded.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
 
 	}
-
+	//loob Settingute ekraani
 	public void looset(Group sjuur, Scene menu, Stage prima) {
 		GridPane alus = new GridPane();
 		sjuur.getChildren().add(alus);
@@ -235,7 +235,7 @@ public class Aken extends Application {
 		return stuff;
 
 	}
-
+	/*
 	public Scene loomang(Group juur) {
 
 		Group tegelane = looTegelane(0.5);
@@ -245,7 +245,7 @@ public class Aken extends Application {
 		EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
 		mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud);
 		return mang;
-	}
+	} */
 	protected KeradeKasitleja getKeradeKasitleja() {
 		return KeradeKasitleja;
 	}
@@ -255,12 +255,12 @@ public class Aken extends Application {
 
 	public void genereeriKera() {
 		Color c = Color.BLUE;
-		Random sArv = new Random();
+		
 		double X = 100;
 
 		Kerad b = new Kerad(X, 0, 20, c);
-		sArv.nextInt((int) 6);
-		b.vY = sArv.nextInt((int) 3) + 5;
+		
+		b.vY =  5;
 
 		final Circle ring = b.getAsCircle();
 		ring.setVisible(true);
