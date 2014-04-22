@@ -1,4 +1,4 @@
-
+import java.util.Random;
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -28,23 +28,25 @@ import javafx.util.Duration;
 
 public class Aken extends Application {
 
-	public static double tegex=200;
-	public static double tegey=200;
-	public static double m=1;
-	public static Text kiri=new Text("");
+	private static final KeradeKasitleja KeradeKasitleja = null;
+	private static final Group juur = null;
+	public static double tegex = 200;
+	public static double tegey = 200;
+	public static double m = 1;
+	public static Text kiri = new Text("");
 
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setResizable(false);
-		primaryStage.setHeight(400*m);
-		primaryStage.setWidth(800*m);
-		//Group juur = new Group();
+		primaryStage.setHeight(400 * m);
+		primaryStage.setWidth(800 * m);
+		// Group juur = new Group();
 		Group mjuur = new Group();
 		Group sjuur = new Group();
-		Scene menu = new Scene(mjuur, 800*m, 400*m, Color.GREEN);
-		Scene set = new Scene(sjuur, 800*m, 400*m, Color.GREEN);
-		//Scene mang = loomang(juur);
-		loomenu(mjuur,set, primaryStage);
+		Scene menu = new Scene(mjuur, 800 * m, 400 * m, Color.GREEN);
+		Scene set = new Scene(sjuur, 800 * m, 400 * m, Color.GREEN);
+		// Scene mang = loomang(juur);
+		loomenu(mjuur, set, primaryStage);
 		looset(sjuur, menu, primaryStage);
 		primaryStage.setTitle("Kitty launcher");
 		primaryStage.setScene(menu);
@@ -52,14 +54,14 @@ public class Aken extends Application {
 	}
 
 	public static void main(String[] args) {
-		kiri.setFont(Font.font("Sustem Regular", 12*m));
+		kiri.setFont(Font.font("Sustem Regular", 12 * m));
 		launch(args);
 	}
 
 	static Group looTegelane(double d) {
 
 		Group kiisu = new Group();
-		double n = d*m;
+		double n = d * m;
 		Circle ovaal = new Circle(100 * n, 100 * n, 50 * n);
 		Polygon vasakkõrv = new Polygon(40 * n, 40 * n, 70 * n, 100 * n,
 				100 * n, 55 * n);
@@ -122,8 +124,8 @@ public class Aken extends Application {
 
 	public static void liigu(Group kass) {
 		Path path = new Path();
-		path.getElements().add(new MoveTo(-100*m, 200*m));
-		path.getElements().add(new LineTo(200*m, 200*m));
+		path.getElements().add(new MoveTo(-100 * m, 200 * m));
+		path.getElements().add(new LineTo(200 * m, 200 * m));
 
 		PathTransition minemine = new PathTransition();
 		minemine.setDuration(Duration.millis(1000));
@@ -135,20 +137,20 @@ public class Aken extends Application {
 		minemine.play();
 	}
 
-	public void loomenu(Group mjuur,Scene set, Stage primaryStage) {
+	public void loomenu(Group mjuur, Scene set, Stage primaryStage) {
 
 		GridPane alus = new GridPane();
 		mjuur.getChildren().add(alus);
-		alus.setVgap(10*m);
-		alus.setHgap(10*m);
+		alus.setVgap(10 * m);
+		alus.setHgap(10 * m);
 		alus.setGridLinesVisible(false);
-		Rectangle mangi = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle mangi = new Rectangle(0, 0, 140 * m, 50 * m);
 		mangi.heightProperty().bind(primaryStage.heightProperty().divide(7));
 		mangi.widthProperty().bind(primaryStage.widthProperty().divide(5));
-		Rectangle upgrade = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle upgrade = new Rectangle(0, 0, 140 * m, 50 * m);
 		upgrade.heightProperty().bind(primaryStage.heightProperty().divide(7));
 		upgrade.widthProperty().bind(primaryStage.widthProperty().divide(5));
-		Rectangle settings = new Rectangle(0, 0, 140*m, 50*m);
+		Rectangle settings = new Rectangle(0, 0, 140 * m, 50 * m);
 		settings.heightProperty().bind(primaryStage.heightProperty().divide(7));
 		settings.widthProperty().bind(primaryStage.widthProperty().divide(5));
 		Text play = new Text("PLAY");
@@ -184,8 +186,8 @@ public class Aken extends Application {
 	public void looset(Group sjuur, Scene menu, Stage prima) {
 		GridPane alus = new GridPane();
 		sjuur.getChildren().add(alus);
-		alus.setVgap(10*m);
-		alus.setHgap(10*m);
+		alus.setVgap(10 * m);
+		alus.setHgap(10 * m);
 		alus.setGridLinesVisible(false);
 		Rectangle tagasi = new Rectangle();
 		tagasi.heightProperty().bind(prima.heightProperty().divide(7));
@@ -216,14 +218,14 @@ public class Aken extends Application {
 		alus.add(big, 1, 2, 1, 1);
 		GridPane.setHalignment(big, HPos.CENTER);
 		GridPane.setValignment(big, VPos.CENTER);
-		EventHandler<MouseEvent> klicks = new Suurus(1.5,prima);
+		EventHandler<MouseEvent> klicks = new Suurus(1.5, prima);
 		big.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
 		suur.addEventHandler(MouseEvent.MOUSE_CLICKED, klicks);
 		alus.add(väike, 1, 3, 1, 1);
 		alus.add(small, 1, 3, 1, 1);
 		GridPane.setHalignment(small, HPos.CENTER);
 		GridPane.setValignment(small, VPos.CENTER);
-		EventHandler<MouseEvent> klickv = new Suurus(1,prima);
+		EventHandler<MouseEvent> klickv = new Suurus(1, prima);
 		väike.addEventHandler(MouseEvent.MOUSE_CLICKED, klickv);
 		small.addEventHandler(MouseEvent.MOUSE_CLICKED, klickv);
 	}
@@ -233,14 +235,39 @@ public class Aken extends Application {
 		return stuff;
 
 	}
-public Scene loomang(Group juur){
 
-	Group tegelane = looTegelane(0.5);
-	juur.getChildren().add(tegelane);
-	liigu(tegelane);
-	Scene mang = new Scene(juur, 800*m, 400*m, Color.LIGHTSKYBLUE);
-	EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
-	mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud);
-	return mang;
-}
+	public Scene loomang(Group juur) {
+
+		Group tegelane = looTegelane(0.5);
+		juur.getChildren().add(tegelane);
+		liigu(tegelane);
+		Scene mang = new Scene(juur, 800 * m, 400 * m, Color.LIGHTSKYBLUE);
+		EventHandler<KeyEvent> vajutatud = new Nooled(tegelane);
+		mang.addEventHandler(KeyEvent.KEY_PRESSED, vajutatud);
+		return mang;
+	}
+	protected KeradeKasitleja getKeradeKasitleja() {
+		return KeradeKasitleja;
+	}
+	public static Group getJuur() {
+		return juur;
+	}
+
+	public void genereeriKera() {
+		Color c = Color.BLUE;
+		Random sArv = new Random();
+		double X = 100;
+
+		Kerad b = new Kerad(X, 0, 20, c);
+		sArv.nextInt((int) 6);
+		b.vY = sArv.nextInt((int) 3) + 5;
+
+		final Circle ring = b.getAsCircle();
+		ring.setVisible(true);
+		ring.setId(b.toString());
+
+		getKeradeKasitleja().lisaKerad(b);
+		getJuur().getChildren().add(0, b.node);
+
+	}
 }
